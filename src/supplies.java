@@ -10,39 +10,43 @@ import java.sql.SQLException;
 public class supplies extends JFrame {
 	/**
 	 */
+	//Database Variables
 	public static Connection con;
 	public static java.sql.Statement pst = null;
 	public static java.sql.ResultSet rs;
+	//Table Data
 	private String[] columnNames = { "ID", "Name", "Salary" };
 	private static Object[][] data = new Object[100][3];
+	//GUI Variables
 	JTable table = new JTable(data, columnNames);
 	JScrollPane container = new JScrollPane(table);
-	JButton but = new JButton("New Item");
-	JButton but2 = new JButton("Buy");
-	JButton but3 = new JButton("Sell");
-
+	JButton newIt = new JButton("New Item");
+	JButton buyButton = new JButton("Buy");
+	JButton sellButton = new JButton("Sell");
+	//constructor
 	public supplies() throws SQLException {
+		//Creating window
 		JFrame frame = new JFrame();
 		frame.setTitle("Supplies");
 		frame.setSize(700, 600);
 		frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLayout(null);
-		frame.add(but);
+		frame.add(newIt);
 		container.setBounds(0, 30, 695, 590);
-		but.setBounds(0, 0, 150, 30);
-		frame.add(but2);
-		but2.setBounds(275, 0, 150, 30);
-		frame.add(but3);
-		but3.setBounds(550, 0, 150, 30);
-		but.addActionListener(new ActionListener() {
+		newIt.setBounds(0, 0, 150, 30);
+		frame.add(buyButton);
+		buyButton.setBounds(275, 0, 150, 30);
+		frame.add(sellButton);
+		sellButton.setBounds(550, 0, 150, 30);
+		newIt.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				newItem ni = new newItem();
 			}
 		});
-		but2.addActionListener(new ActionListener() {
+		buyButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -53,7 +57,7 @@ public class supplies extends JFrame {
 				}
 			}
 		});
-		but3.addActionListener(new ActionListener() {
+		sellButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -80,7 +84,7 @@ public class supplies extends JFrame {
 		// Open Connection with DB
 		try {
 			con = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/testDB", "root", "");
+					"jdbc:mysql://localhost:3306/warehouse", "root", "");
 			pst = con.createStatement();
 			System.out.println("Connected to database");
 		} catch (SQLException e) {
@@ -90,7 +94,7 @@ public class supplies extends JFrame {
 	}// Connect method
 
 	public static void Tablequery() throws SQLException {
-		rs = pst.executeQuery("select * from employee");
+		rs = pst.executeQuery("select * from prods");
 		int i = 0;
 		while (rs.next()) {
 			// { "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) }
