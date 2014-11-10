@@ -16,11 +16,11 @@ public class supplies extends JFrame {
 	public static java.sql.Statement pst = null;
 	public static java.sql.ResultSet rs;
 	// Table Data
-	private String[] columnNames = { "ID", "Name", "Quantity", "Date", "Type",
+	private static String[] columnNames = { "ID", "Name", "Quantity", "Date", "Type",
 			"Price", "FPA" };
 	private static Object[][] data = new Object[100][7];
 	// GUI Variables
-	JTable table = new JTable(data, columnNames);
+	public static JTable table = new JTable(data, columnNames);
 	JScrollPane container = new JScrollPane(table);
 	JButton newIt = new JButton("Products"); // Products
 	JButton buyButton = new JButton("Buy"); // Buy
@@ -37,7 +37,7 @@ public class supplies extends JFrame {
 	// constructor
 	public supplies() throws SQLException {
 		// Creating window
-		JFrame frame = new JFrame();
+		final JFrame frame = new JFrame();
 		frame.setTitle("Supplies");
 		frame.setSize(700, 600);
 		frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -81,6 +81,7 @@ public class supplies extends JFrame {
 				try {
 					addData();
 					buy b = new buy();
+					frame.dispose();
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -143,7 +144,7 @@ public class supplies extends JFrame {
 	}// query
 	//Find all product names
 	public static void addData() throws SQLException {
-		rs = pst.executeQuery("select pname from prods;");
+		rs = pst.executeQuery("select pname from prods");
 		buy.list = new String[counter];
 		int i = 0;
 		while (rs.next()) {
