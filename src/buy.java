@@ -1,8 +1,10 @@
 import java.awt.GridLayout;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
+import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -20,8 +22,8 @@ public class buy extends JFrame {
 	JLabel empsalaryL = new JLabel("Salary");
 	JButton buyI = new JButton("Buy");
 	JLabel empty = new JLabel();
-	String[] list = { "ID", "Name", "Quantity" , "Date","Type","Price","FPA" };
-	JComboBox itemList = new JComboBox(list);
+	//String[] list = { "ID", "Name", "Quantity" , "Date","Type","Price","FPA" };
+	JComboBox itemList = new JComboBox();
 	public buy() throws SQLException {
 		j.setTitle("Buy");
 		j.setSize(200, 150);
@@ -37,6 +39,6 @@ public class buy extends JFrame {
 		j.add(empty);
 		j.add(buyI);
 		j.setVisible(true);
-		sp.Tablequery();
+		
 	}
 }

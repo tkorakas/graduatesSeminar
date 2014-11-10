@@ -1,9 +1,9 @@
+
 import javax.swing.JFrame;
 
 
 public class BuyLog extends JFrame{
 	JFrame bl = new JFrame();
-	
 	public BuyLog(){
 		bl.setTitle("BuyLog");
 		bl.setSize(700,600);
