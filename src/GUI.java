@@ -34,7 +34,6 @@ public class GUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					supplies.connect();
 					supplies.Tablequery();
 					supplies s = new supplies();
 				} catch (SQLException e) {
@@ -47,6 +46,12 @@ public class GUI extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				try {
+					BuyLog.bldata();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				BuyLog bl = new BuyLog();
 			}
 		});

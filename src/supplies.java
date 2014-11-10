@@ -111,7 +111,7 @@ public class supplies extends JFrame {
 			Class.forName("com.mysql.jdbc.Driver");
 
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,"Cant Connect with Database","Connection Problem", JOptionPane.INFORMATION_MESSAGE);
 		}
 		// Open Connection with DB
 		try {
@@ -152,5 +152,5 @@ public class supplies extends JFrame {
 			i++;
 		}// while
 		
-	}
+	}//addData
 }
