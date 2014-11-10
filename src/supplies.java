@@ -21,10 +21,10 @@ public class supplies extends JFrame {
 	//GUI Variables
 	JTable table = new JTable(data, columnNames);
 	JScrollPane container = new JScrollPane(table);
-	JButton newIt = new JButton("New Item");
-	JButton buyButton = new JButton("Buy");
-	JButton sellButton = new JButton("Sell");
-	//Resize table variabless
+	JButton newIt = new JButton("Products"); // Products
+	JButton buyButton = new JButton("Buy"); // Buy
+	JButton sellButton = new JButton("Sell"); // Sell
+	//Resize table variables
 	TableColumn column1 = null;
 	TableColumn column2 = null;
 	TableColumn column3 = null;
@@ -62,6 +62,9 @@ public class supplies extends JFrame {
 		column6.setPreferredWidth(30);
 		column7 = table.getColumnModel().getColumn(6);
 		column7.setPreferredWidth(30);
+		
+		
+		//onClick method for Products
 		newIt.addActionListener(new ActionListener() {
 
 			@Override

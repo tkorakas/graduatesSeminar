@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -19,7 +20,8 @@ public class buy extends JFrame {
 	JLabel empsalaryL = new JLabel("Salary");
 	JButton buyI = new JButton("Buy");
 	JLabel empty = new JLabel();
-
+	String[] list = { "ID", "Name", "Quantity" , "Date","Type","Price","FPA" };
+	JComboBox itemList = new JComboBox(list);
 	public buy() throws SQLException {
 		j.setTitle("Buy");
 		j.setSize(200, 150);
@@ -29,7 +31,7 @@ public class buy extends JFrame {
 		j.add(empidL);
 		j.add(empid);
 		j.add(empnameL);
-		j.add(empname);
+		j.add(itemList);
 		j.add(empsalaryL);
 		j.add(empsalary);
 		j.add(empty);
