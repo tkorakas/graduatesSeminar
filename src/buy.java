@@ -71,6 +71,9 @@ public class buy extends JFrame {
 						Date date = new Date();
 						pt.setString(3, ft.format(date));
 						pt.executeUpdate();
+						JOptionPane.showMessageDialog(null,
+								"Purchase was Completed", "State",
+								JOptionPane.INFORMATION_MESSAGE);
 						j.dispose();
 					} catch (SQLException e) {
 						e.printStackTrace();

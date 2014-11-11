@@ -51,7 +51,7 @@ public class supplies extends JFrame {
 		frame.add(buyButton);
 		buyButton.setBounds(275, 0, 150, 30);
 		frame.add(sellButton);
-		sellButton.setBounds(550, 0, 150, 30);
+		sellButton.setBounds(545, 0, 150, 30);
 		// Resizing columns
 		column1 = table.getColumnModel().getColumn(0);
 		column1.setPreferredWidth(10);
@@ -95,10 +95,10 @@ public class supplies extends JFrame {
 				try {
 					addSellData();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				sell sl = new sell();
+				frame.dispose();
 			}
 		});
 		frame.add(container);
