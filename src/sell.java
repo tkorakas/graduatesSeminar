@@ -1,4 +1,6 @@
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
@@ -13,6 +15,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class sell extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7202503354390928155L;
+	/**
+	 * 
+	 */
 	JFrame j = new JFrame();
 	public static String[] sellList;
 	JLabel product = new JLabel("Product");
@@ -29,6 +38,11 @@ public class sell extends JFrame {
 	String selectedItem;
 	int quantIn;
 	String selectedType;
+	Toolkit tk = Toolkit.getDefaultToolkit();
+	Dimension screenSize = tk.getScreenSize();
+	int screenHeight = screenSize.height;
+	int screenWidth = screenSize.width;
+
 	public sell() {
 		j.setTitle("Sell");
 		j.setSize(500, 120);
@@ -43,6 +57,7 @@ public class sell extends JFrame {
 		j.add(type);
 		j.add(empty);
 		j.add(sellb);
+		j.setLocation(screenWidth / 4, screenHeight / 4);
 		sellb.addActionListener(new ActionListener() {
 
 			@Override
@@ -51,10 +66,9 @@ public class sell extends JFrame {
 						.getElementAt(products.getSelectedIndex()).toString();
 				selectedType = type.getModel()
 						.getElementAt(type.getSelectedIndex()).toString();
-				if(selectedType.equals("Apodeiksi")){
+				if (selectedType.equals("Apodeiksi")) {
 					selectedType = "a_l";
-				}
-				else{
+				} else {
 					selectedType = "t_p";
 				}
 				try {
@@ -63,10 +77,8 @@ public class sell extends JFrame {
 								.prepareStatement("select pquant from prods where pname = ?");
 						pt.setString(1, selectedItem);
 						supplies.rs = pt.executeQuery();
-						System.out.println("query done");
 						while (supplies.rs.next()) {
 							quantIn = supplies.rs.getInt(1);
-							System.out.println(quantIn);
 						}
 						if (Integer.parseInt(quantity.getText()) <= quantIn) {
 							PreparedStatement pt2 = supplies.con
@@ -78,14 +90,14 @@ public class sell extends JFrame {
 									.prepareStatement("insert into sell values(null,?,?,?,?)");
 							pt2.setString(1, selectedItem);
 							pt2.setInt(2, Integer.parseInt(quantity.getText()));
-							SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+							SimpleDateFormat ft = new SimpleDateFormat(
+									"yyyy-MM-dd");
 							Date date = new Date();
 							pt2.setString(3, ft.format(date));
 							pt2.setString(4, selectedType);
 							pt2.executeUpdate();
-							JOptionPane.showMessageDialog(null,
-									"Product Sold", "State",
-									JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Product Sold",
+									"State", JOptionPane.INFORMATION_MESSAGE);
 							j.dispose();
 						} else {
 							JOptionPane.showMessageDialog(null,
@@ -95,8 +107,8 @@ public class sell extends JFrame {
 					}
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, "Fill quantity",
-					"Empty Quantity", JOptionPane.INFORMATION_MESSAGE);
-					
+							"Empty Quantity", JOptionPane.INFORMATION_MESSAGE);
+
 				}
 			}
 		});

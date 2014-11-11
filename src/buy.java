@@ -1,14 +1,13 @@
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
-import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
-import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -17,6 +16,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class buy extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4518011660406369616L;
+	/**
+	 * 
+	 */
 	JFrame j = new JFrame();
 	JTextField empname = new JTextField();
 	JTextField empsalary = new JTextField();
@@ -27,6 +33,10 @@ public class buy extends JFrame {
 	public static String[] list;
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	JComboBox itemList = new JComboBox(list);
+	Toolkit tk = Toolkit.getDefaultToolkit();
+	Dimension screenSize = tk.getScreenSize();
+	int screenHeight = screenSize.height;
+	int screenWidth = screenSize.width;
 
 	public buy() throws SQLException {
 		j.setTitle("Buy");
@@ -41,6 +51,7 @@ public class buy extends JFrame {
 		j.add(empty);
 		j.add(buyI);
 		j.setVisible(true);
+		j.setLocation(screenWidth / 4, screenHeight / 4);
 		buyI.addActionListener(new ActionListener() {
 
 			@Override
@@ -61,7 +72,6 @@ public class buy extends JFrame {
 								.prepareStatement("update prods set pquant = pquant + ? where pname = ?");
 						pt.setInt(1, Integer.parseInt(empsalary.getText()));
 						pt.setString(2, product);
-						System.out.println(pt.toString());
 						pt.executeUpdate();
 						pt = supplies.con
 								.prepareStatement("insert into buy values(null,?,?,?)");

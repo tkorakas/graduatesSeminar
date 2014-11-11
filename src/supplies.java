@@ -1,3 +1,5 @@
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,6 +11,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class supplies extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3000272733344032327L;
 	/**
 	 */
 	// Database Variables
@@ -34,7 +40,10 @@ public class supplies extends JFrame {
 	TableColumn column6 = null;
 	TableColumn column7 = null;
 	private static int counter = 0;
-
+	Toolkit tk = Toolkit.getDefaultToolkit();
+	Dimension screenSize = tk.getScreenSize();
+	int screenHeight = screenSize.height;
+	int screenWidth = screenSize.width;
 	// constructor
 	public supplies() throws SQLException {
 		// Creating window
@@ -44,6 +53,7 @@ public class supplies extends JFrame {
 		frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLayout(null);
+		frame.setLocation(screenWidth / 4, screenHeight / 4);
 		frame.add(newIt);
 		// Set custom layout
 		container.setBounds(0, 30, 695, 590);
@@ -71,7 +81,9 @@ public class supplies extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("unused")
 				newItem ni = new newItem();
+				frame.dispose();
 			}
 		});
 		// Buy button
@@ -81,6 +93,7 @@ public class supplies extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					addData();
+					@SuppressWarnings("unused")
 					buy b = new buy();
 					frame.dispose();
 				} catch (SQLException e) {
@@ -97,6 +110,7 @@ public class supplies extends JFrame {
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
+				@SuppressWarnings("unused")
 				sell sl = new sell();
 				frame.dispose();
 			}

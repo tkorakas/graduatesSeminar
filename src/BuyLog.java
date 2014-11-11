@@ -1,3 +1,5 @@
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
@@ -6,6 +8,10 @@ import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 
 public class BuyLog extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6155099684574375762L;
 	JFrame bl = new JFrame();
 	private static String[] blcolumns = { "ID", "Name", "Quantity", "Date" };
 	private static Object[][] databl = new Object[100][4];
@@ -15,6 +21,10 @@ public class BuyLog extends JFrame {
 	TableColumn column2 = null;
 	TableColumn column3 = null;
 	TableColumn column4 = null;
+	Toolkit tk = Toolkit.getDefaultToolkit();
+	Dimension screenSize = tk.getScreenSize();
+	int screenHeight = screenSize.height;
+	int screenWidth = screenSize.width;
 
 	public BuyLog() {
 		bl.setTitle("Buy Log");
@@ -31,6 +41,7 @@ public class BuyLog extends JFrame {
 		column4 = buylog.getColumnModel().getColumn(3);
 		column4.setPreferredWidth(30);
 		buylog.setEnabled(false);
+		bl.setLocation(screenWidth / 4, screenHeight / 4);
 		bl.setVisible(true);
 	}// constructor
 
