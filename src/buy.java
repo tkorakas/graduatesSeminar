@@ -18,7 +18,6 @@ import javax.swing.JTextField;
 
 public class buy extends JFrame {
 	JFrame j = new JFrame();
-	supplies sp = new supplies("test");
 	JTextField empname = new JTextField();
 	JTextField empsalary = new JTextField();
 	JLabel empnameL = new JLabel("Product");
@@ -26,8 +25,6 @@ public class buy extends JFrame {
 	JButton buyI = new JButton("Buy");
 	JLabel empty = new JLabel();
 	public static String[] list;
-	// String[] list = { "ID", "Name", "Quantity" , "Date","Type","Price","FPA"
-	// };
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	JComboBox itemList = new JComboBox(list);
 
@@ -49,31 +46,36 @@ public class buy extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				int quant = 0;
-				try{
+				try {
 					quant = Integer.parseInt(empsalary.getText());
-				}catch(Exception e){
-					 JOptionPane.showMessageDialog(null, "Fill quantity", "Empty Quantity", JOptionPane.INFORMATION_MESSAGE);
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, "Fill quantity",
+							"Empty Quantity", JOptionPane.INFORMATION_MESSAGE);
 				}
 				if (quant > 0) {
 					try {
-						String product =  itemList.getModel().getElementAt(itemList.getSelectedIndex()).toString();
-						PreparedStatement pt = supplies.con.prepareStatement("update prods set pquant = pquant + ? where pname = ?");
+						String product = itemList.getModel()
+								.getElementAt(itemList.getSelectedIndex())
+								.toString();
+						PreparedStatement pt = supplies.con
+								.prepareStatement("update prods set pquant = pquant + ? where pname = ?");
 						pt.setInt(1, Integer.parseInt(empsalary.getText()));
 						pt.setString(2, product);
 						System.out.println(pt.toString());
 						pt.executeUpdate();
-						pt = supplies.con.prepareStatement("insert into buy values(null,?,?,?)");
+						pt = supplies.con
+								.prepareStatement("insert into buy values(null,?,?,?)");
 						pt.setString(1, product);
-						pt.setInt(2,quant);
-						SimpleDateFormat ft =   new SimpleDateFormat("yyyy-MM-dd");
+						pt.setInt(2, quant);
+						SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 						Date date = new Date();
-						pt.setString(3,ft.format(date));
+						pt.setString(3, ft.format(date));
 						pt.executeUpdate();
 						j.dispose();
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
-				}else{
+				} else {
 					System.out.println("fill quantity");
 				}
 			}

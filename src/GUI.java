@@ -5,25 +5,24 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.sql.SQLException;
+
 public class GUI extends JFrame {
 	/**
 	 * 
 	 */
 	JFrame f = new JFrame();
-	private JLabel tit = new JLabel("Lorem Ipsum", JLabel.CENTER);
 	private JButton lab1 = new JButton("Supplies");
 	private JButton lab2 = new JButton("BuyLog");
 	private JButton lab3 = new JButton("SellLog");
 	private JButton lab4 = new JButton("About");
 
-	public GUI(){
+	public GUI() {
 		System.out.println("Rendering...");
-		f.setTitle("Test");
-		f.setSize(350, 250);
+		f.setTitle("Database Managment System");
+		f.setSize(500, 150);
 		f.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		f.setResizable(false);
 		f.setLayout(new GridLayout(0, 1));
-		f.add(tit);
 		f.add(lab1);
 		f.add(lab2);
 		f.add(lab3);
@@ -43,7 +42,7 @@ public class GUI extends JFrame {
 			}
 		});
 		lab2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -53,6 +52,13 @@ public class GUI extends JFrame {
 					e1.printStackTrace();
 				}
 				BuyLog bl = new BuyLog();
+			}
+		});
+		lab3.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				sell s = new sell();
 			}
 		});
 

@@ -16,8 +16,8 @@ public class supplies extends JFrame {
 	public static java.sql.Statement pst = null;
 	public static java.sql.ResultSet rs;
 	// Table Data
-	private static String[] columnNames = { "ID", "Name", "Quantity", "Date", "Type",
-			"Price", "FPA" };
+	private static String[] columnNames = { "ID", "Name", "Quantity", "Date",
+			"Type", "Price", "FPA" };
 	private static Object[][] data = new Object[100][7];
 	// GUI Variables
 	public static JTable table = new JTable(data, columnNames);
@@ -34,6 +34,7 @@ public class supplies extends JFrame {
 	TableColumn column6 = null;
 	TableColumn column7 = null;
 	private static int counter = 0;
+
 	// constructor
 	public supplies() throws SQLException {
 		// Creating window
@@ -73,7 +74,7 @@ public class supplies extends JFrame {
 				newItem ni = new newItem();
 			}
 		});
-		//Buy button
+		// Buy button
 		buyButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -91,6 +92,12 @@ public class supplies extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				try {
+					addSellData();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				sell sl = new sell();
 			}
 		});
@@ -100,10 +107,6 @@ public class supplies extends JFrame {
 	}// supplies
 		// constructor with parameter
 
-	public supplies(String dif) {
-
-	}
-
 	// Connect to Database
 	public static void connect() {
 		// insert library
@@ -111,7 +114,8 @@ public class supplies extends JFrame {
 			Class.forName("com.mysql.jdbc.Driver");
 
 		} catch (ClassNotFoundException e) {
-			JOptionPane.showMessageDialog(null,"Cant Connect with Database","Connection Problem", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Cant Connect with Database",
+					"Connection Problem", JOptionPane.INFORMATION_MESSAGE);
 		}
 		// Open Connection with DB
 		try {
@@ -142,7 +146,8 @@ public class supplies extends JFrame {
 			counter++;
 		}// while
 	}// query
-	//Find all product names
+		// Find all product names
+
 	public static void addData() throws SQLException {
 		rs = pst.executeQuery("select pname from prods");
 		buy.list = new String[counter];
@@ -151,6 +156,21 @@ public class supplies extends JFrame {
 			buy.list[i] = rs.getString(1);
 			i++;
 		}// while
-		
-	}//addData
+
+	}// addData
+
+	public static void addSellData() throws SQLException {
+		rs = pst.executeQuery("select pname from prods");
+		int j = 0;
+		while (rs.next()) {
+			j++;
+		}
+		sell.sellList = new String[j];
+		int i = 0;
+		rs = pst.executeQuery("select pname from prods");
+		while (rs.next()) {
+			sell.sellList[i] = rs.getString(1);
+			i++;
+		}// while
+	}
 }
