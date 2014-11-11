@@ -8,7 +8,7 @@ import javax.swing.table.TableColumn;
 public class BuyLog extends JFrame {
 	JFrame bl = new JFrame();
 	private static String[] blcolumns = { "ID", "Name", "Quantity", "Date" };
-	private static Object[][] databl = new Object[100][7];
+	private static Object[][] databl = new Object[100][4];
 	public static JTable buylog = new JTable(databl, blcolumns);
 	JScrollPane container = new JScrollPane(buylog);
 	TableColumn column1 = null;
@@ -17,7 +17,7 @@ public class BuyLog extends JFrame {
 	TableColumn column4 = null;
 
 	public BuyLog() {
-		bl.setTitle("BuyLog");
+		bl.setTitle("Buy Log");
 		bl.setSize(700, 600);
 		bl.setResizable(false);
 		bl.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

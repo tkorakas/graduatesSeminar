@@ -62,7 +62,6 @@ public class sell extends JFrame {
 						PreparedStatement pt = supplies.con
 								.prepareStatement("select pquant from prods where pname = ?");
 						pt.setString(1, selectedItem);
-						System.out.println(selectedItem);
 						supplies.rs = pt.executeQuery();
 						System.out.println("query done");
 						while (supplies.rs.next()) {
@@ -95,9 +94,9 @@ public class sell extends JFrame {
 						}
 					}
 				} catch (Exception e) {
-					// JOptionPane.showMessageDialog(null, "Fill quantity",
-					// "Empty Quantity", JOptionPane.INFORMATION_MESSAGE);
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Fill quantity",
+					"Empty Quantity", JOptionPane.INFORMATION_MESSAGE);
+					
 				}
 			}
 		});

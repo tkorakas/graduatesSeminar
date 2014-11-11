@@ -7,9 +7,7 @@ import javax.swing.JLabel;
 import java.sql.SQLException;
 
 public class GUI extends JFrame {
-	/**
-	 * 
-	 */
+
 	JFrame f = new JFrame();
 	private JButton lab1 = new JButton("Supplies");
 	private JButton lab2 = new JButton("BuyLog");
@@ -58,7 +56,13 @@ public class GUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				sell s = new sell();
+				try {
+					sellLog.sldata();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				sellLog s = new sellLog();
 			}
 		});
 
