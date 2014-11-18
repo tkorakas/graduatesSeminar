@@ -15,8 +15,8 @@ public class GUI extends JFrame {
 	private static final long serialVersionUID = -3024781500307203319L;
 	JFrame f = new JFrame();
 	private JButton lab1 = new JButton("Supplies");
-	private JButton lab2 = new JButton("BuyLog");
-	private JButton lab3 = new JButton("SellLog");
+	private JButton lab2 = new JButton("Buy Log");
+	private JButton lab3 = new JButton("Sell Log");
 	private JButton lab4 = new JButton("About");
 	Toolkit tk = Toolkit.getDefaultToolkit();
 	Dimension screenSize = tk.getScreenSize();
