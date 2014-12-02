@@ -15,7 +15,7 @@ public class Edit extends JFrame{
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	JComboBox edList = new JComboBox(buy.list);
 	JLabel items = new JLabel("Products");
-	JButton delete = new JButton("Delete");
+	JButton delete = new JButton("Edit");
 	JLabel empty = new JLabel();
 	Toolkit tk = Toolkit.getDefaultToolkit();
 	Dimension screenSize = tk.getScreenSize();

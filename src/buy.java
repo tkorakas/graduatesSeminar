@@ -84,6 +84,8 @@ public class buy extends JFrame {
 						JOptionPane.showMessageDialog(null,
 								"Purchase was Completed", "State",
 								JOptionPane.INFORMATION_MESSAGE);
+						supplies.Tablequery();
+						supplies.table.repaint();
 						j.dispose();
 					} catch (SQLException e) {
 						e.printStackTrace();

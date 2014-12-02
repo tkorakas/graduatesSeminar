@@ -48,6 +48,23 @@ public class Delete extends JFrame {
 					pt.setString(1,product);
 					pt.executeUpdate();
 					JOptionPane.showMessageDialog(null,product + " deleted.","Deleted",JOptionPane.INFORMATION_MESSAGE);
+					//Bad Method for deleting table row 
+					for(int i =0;i<supplies.counter;i++){
+						if(supplies.data[i][1].toString().equals(product)){
+							for(int j=i;j<supplies.counter-1;j++){
+								for(int t=0;t<7;t++){
+									supplies.data[j][t] = supplies.data[j+1][t+1];
+								}
+							}
+							for(int t=0;t<7;t++){
+								supplies.data[supplies.counter-1][t] = null;
+							}
+							
+						}
+					}//end
+					
+					supplies.Tablequery();
+					supplies.table.repaint();
 					dlt.dispose();
 				} catch (SQLException e) {
 					e.printStackTrace();

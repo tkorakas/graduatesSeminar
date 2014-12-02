@@ -4,7 +4,6 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -85,6 +84,8 @@ public class Add extends JFrame {
 						JOptionPane.showMessageDialog(null,
 								"New Product Added", "New Product",
 								JOptionPane.INFORMATION_MESSAGE);
+						supplies.Tablequery();
+						supplies.table.repaint();
 						ad.dispose();
 					
 				} catch (Exception e) {
