@@ -2,6 +2,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.*;
 import javax.swing.table.TableColumn;
 
@@ -135,6 +136,7 @@ public class supplies extends JFrame {
 			}
 		});// Action Listener for PRODUCTS
 
+		// Buy menu listener
 		buyMenu.addActionListener(new ActionListener() {
 
 			@Override
@@ -148,7 +150,7 @@ public class supplies extends JFrame {
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
-
+					buyMenu.setSelectedIndex(0);
 				} else if (buyMenu.getSelectedItem().toString()
 						.equals("Buy Log")) {
 					try {
@@ -165,12 +167,41 @@ public class supplies extends JFrame {
 					}
 					@SuppressWarnings("unused")
 					sellLog s = new sellLog();
-
+					buyMenu.setSelectedIndex(0);
 				} else {
 
 				}
 			}
-		});
+		});// Buy menu
+
+		// Sell Menu
+		sellMenu.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (sellMenu.getSelectedItem().toString().equals("Sell Log")) {
+					try {
+						sellLog.sldata();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					@SuppressWarnings("unused")
+					sellLog s = new sellLog();
+					sellMenu.setSelectedIndex(0);
+				} else if (sellMenu.getSelectedItem().toString().equals("Sell")) {
+					try {
+						addSellData();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					@SuppressWarnings("unused")
+					sell Nsell = new sell();
+					sellMenu.setSelectedIndex(0);
+				}
+			}
+		});//Sell Menu
 	}
 
 	public void prodsResize() {
@@ -221,7 +252,7 @@ public class supplies extends JFrame {
 
 	// Retrieve Data from Database
 	public static void Tablequery() throws SQLException {
-		counter=0;
+		counter = 0;
 		rs = pst.executeQuery("select * from prods");
 		int i = 0;
 		while (rs.next()) {

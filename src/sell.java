@@ -87,17 +87,19 @@ public class sell extends JFrame {
 							pt2.setString(2, selectedItem);
 							pt2.executeUpdate();
 							pt2 = supplies.con
-									.prepareStatement("insert into sell values(null,?,?,?,?)");
+									.prepareStatement("insert into sell values(null,?,?,?)");
 							pt2.setString(1, selectedItem);
 							pt2.setInt(2, Integer.parseInt(quantity.getText()));
 							SimpleDateFormat ft = new SimpleDateFormat(
 									"yyyy-MM-dd");
 							Date date = new Date();
 							pt2.setString(3, ft.format(date));
-							pt2.setString(4, selectedType);
+							//pt2.setString(4, selectedType);
 							pt2.executeUpdate();
 							JOptionPane.showMessageDialog(null, "Product Sold",
 									"State", JOptionPane.INFORMATION_MESSAGE);
+							supplies.Tablequery();
+							supplies.table.repaint();
 							j.dispose();
 						} else {
 							JOptionPane.showMessageDialog(null,
@@ -106,9 +108,9 @@ public class sell extends JFrame {
 						}
 					}
 				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, "Fill quantity",
-							"Empty Quantity", JOptionPane.INFORMATION_MESSAGE);
-
+					//JOptionPane.showMessageDialog(null, "Fill quantity",
+						//	"Empty Quantity", JOptionPane.INFORMATION_MESSAGE);
+					e.printStackTrace();
 				}
 			}
 		});

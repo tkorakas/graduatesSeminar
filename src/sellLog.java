@@ -14,9 +14,8 @@ public class sellLog extends JFrame {
 	 * 
 	 */
 	JFrame sl = new JFrame();
-	private static String[] slcolumns = { "ID", "Name", "Quantity", "Date",
-			"Type" };
-	private static Object[][] datasl = new Object[100][5];
+	private static String[] slcolumns = { "ID", "Name", "Quantity", "Date" };
+	private static Object[][] datasl = new Object[100][4];
 	public static JTable selllog = new JTable(datasl, slcolumns);
 	JScrollPane container = new JScrollPane(selllog);
 	TableColumn column1 = null;
@@ -44,8 +43,6 @@ public class sellLog extends JFrame {
 		column3.setPreferredWidth(40);
 		column4 = selllog.getColumnModel().getColumn(3);
 		column4.setPreferredWidth(30);
-		column5 = selllog.getColumnModel().getColumn(4);
-		column5.setPreferredWidth(30);
 		selllog.setEnabled(false);
 		sl.setVisible(true);
 	}// constructor
@@ -58,7 +55,6 @@ public class sellLog extends JFrame {
 			datasl[i][1] = supplies.rs.getString(2);
 			datasl[i][2] = supplies.rs.getString(3);
 			datasl[i][3] = supplies.rs.getString(4);
-			datasl[i][4] = supplies.rs.getString(5);
 			i++;
 		}// while
 	}
