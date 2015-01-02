@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
 -- Φιλοξενητής: 127.0.0.1
--- Χρόνος δημιουργίας: 10 Νοε 2014 στις 10:28:59
--- Έκδοση διακομιστή: 5.6.20
--- Έκδοση PHP: 5.5.15
+-- Χρόνος δημιουργίας: 02 Ιαν 2015 στις 12:05:15
+-- Έκδοση διακομιστή: 5.6.21
+-- Έκδοση PHP: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,10 +28,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `buy` (
 `bid` int(11) NOT NULL,
-  `bname` varchar(30) NOT NULL,
+  `bname` varchar(40) NOT NULL,
   `bquant` int(11) NOT NULL,
   `bdate` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Άδειασμα δεδομένων του πίνακα `buy`
+--
+
+INSERT INTO `buy` (`bid`, `bname`, `bquant`, `bdate`) VALUES
+(1, 'DVD Verdatim', 50, '2015-01-02'),
+(2, 'KINGSTON DATA TRAVELER 8GB USB', 3, '2015-01-02'),
+(3, 'KINGSTON DATATRAVELER G4 8GB U', 3, '2015-01-02'),
+(4, 'VERBATIM 97761 MICRO PLUS 8GB ', 4, '2015-01-02'),
+(5, 'CD Verdatim ', 50, '2015-01-02'),
+(6, 'MICROSOFT MOUSE', 10, '2015-01-02');
 
 -- --------------------------------------------------------
 
@@ -41,26 +53,31 @@ CREATE TABLE IF NOT EXISTS `buy` (
 
 CREATE TABLE IF NOT EXISTS `prods` (
 `pid` int(11) NOT NULL,
-  `pname` varchar(30) NOT NULL,
+  `pname` varchar(40) NOT NULL,
   `pquant` int(11) NOT NULL,
   `pdate` date NOT NULL,
-  `ptype` varchar(3) NOT NULL,
-  `pprice` int(11) NOT NULL,
-  `pfpa` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+  `pprice` float NOT NULL,
+  `pfpa` float NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Άδειασμα δεδομένων του πίνακα `prods`
 --
 
-INSERT INTO `prods` (`pid`, `pname`, `pquant`, `pdate`, `ptype`, `pprice`, `pfpa`) VALUES
-(1, 'DVD Verdatim', 100, '2014-11-10', 'a_l', 100, 123),
-(2, 'KINGSTON DATA TRAVELER 8GB USB', 50, '2014-11-10', 't_p', 100, 123),
-(3, 'KINGSTON DATATRAVELER G4 8GB U', 60, '2014-11-10', 't_p', 100, 123),
-(4, 'VERBATIM 97761 MICRO PLUS 8GB ', 300, '2014-11-12', 't_p', 100, 123),
-(5, 'VERBATIM 98695 SLIDER 8GB USB2', 150, '2014-11-12', 't_p', 100, 123),
-(6, 'CD Verdatim', 100, '2014-11-15', 'a_l', 100, 123),
-(7, 'Melania CANON Black ', 20, '2014-11-16', 'a_l', 100, 123);
+INSERT INTO `prods` (`pid`, `pname`, `pquant`, `pdate`, `pprice`, `pfpa`) VALUES
+(8, 'DVD Verdatim', 100, '2015-01-02', 0.6, 0.738),
+(9, 'KINGSTON DATA TRAVELER 8GB USB', 23, '2015-01-02', 3.3, 4.059),
+(10, 'KINGSTON DATATRAVELER G4 8GB U', 31, '2015-01-02', 4, 4.92),
+(11, 'VERBATIM 97761 MICRO PLUS 8GB ', 36, '2015-01-02', 4.2, 5.166),
+(12, 'VERBATIM 98695 SLIDER 8GB USB2', 15, '2015-01-02', 4.6, 5.658),
+(14, 'Melania CANON Black ', 10, '2015-01-02', 12, 14.76),
+(15, 'KINGSTON SDC4/4GB', 30, '2015-01-02', 2.48, 3.0504),
+(16, 'VERBATIM 43967 MICROSDHC 8GB', 15, '2015-01-02', 4.1, 5.043),
+(17, 'TOSHIBA 500GB USB 3.0 Black', 6, '2015-01-02', 44.5, 54.735),
+(18, 'GENIUS XSCROLL PS/2   ', 10, '2015-01-02', 3.68, 4.5264),
+(19, 'COMPUTER TRAVEL KIT', 10, '2015-01-02', 7.9, 9.717),
+(20, 'MODECOM MC-M9 OPTICAL MOUSE ', 5, '2015-01-02', 4.4, 5.412),
+(21, 'MICROSOFT MOUSE', 10, '2015-01-02', 4.2, 5.166);
 
 -- --------------------------------------------------------
 
@@ -70,10 +87,19 @@ INSERT INTO `prods` (`pid`, `pname`, `pquant`, `pdate`, `ptype`, `pprice`, `pfpa
 
 CREATE TABLE IF NOT EXISTS `sell` (
 `sid` int(11) NOT NULL,
-  `sname` varchar(30) NOT NULL,
+  `sname` varchar(40) NOT NULL,
   `squant` int(11) NOT NULL,
-  `sdate` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `stype` varchar(3) NOT NULL,
+  `sdate` date NOT NULL,
+  `sprice` float NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Άδειασμα δεδομένων του πίνακα `sell`
+--
+
+INSERT INTO `sell` (`sid`, `sname`, `squant`, `stype`, `sdate`, `sprice`) VALUES
+(3, 'TOSHIBA 500GB USB 3.0 Black', 2, 'a_l', '2015-01-02', 108);
 
 --
 -- Ευρετήρια για άχρηστους πίνακες
@@ -105,17 +131,17 @@ ALTER TABLE `sell`
 -- AUTO_INCREMENT για πίνακα `buy`
 --
 ALTER TABLE `buy`
-MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT για πίνακα `prods`
 --
 ALTER TABLE `prods`
-MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT για πίνακα `sell`
 --
 ALTER TABLE `sell`
-MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
