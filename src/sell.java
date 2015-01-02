@@ -72,6 +72,30 @@ public class sell extends JFrame {
 					selectedType = "t_p";
 				}
 				try {
+					//price 
+					@SuppressWarnings("unused")
+					float sprice = 0 ;
+					//final price
+					if(selectedType.equals("a_l")){
+						//+fpa
+						PreparedStatement pt = supplies.con
+								.prepareStatement("select pfpa from prods where pname = ?");
+						pt.setString(1, selectedItem);
+						supplies.rs = pt.executeQuery();
+						while (supplies.rs.next()) {
+							sprice = supplies.rs.getFloat(1);
+						}
+					}else{
+						//without fpa
+						PreparedStatement pt = supplies.con
+								.prepareStatement("select pprice from prods where pname = ?");
+						pt.setString(1, selectedItem);
+						supplies.rs = pt.executeQuery();
+						while (supplies.rs.next()) {
+							sprice = supplies.rs.getFloat(1);
+						}
+					}//if for payment type
+					
 					if (Integer.parseInt(quantity.getText()) > 0) {
 						PreparedStatement pt = supplies.con
 								.prepareStatement("select pquant from prods where pname = ?");
@@ -87,14 +111,16 @@ public class sell extends JFrame {
 							pt2.setString(2, selectedItem);
 							pt2.executeUpdate();
 							pt2 = supplies.con
-									.prepareStatement("insert into sell values(null,?,?,?)");
+									.prepareStatement("insert into sell values(null,?,?,?,?,?)");
 							pt2.setString(1, selectedItem);
 							pt2.setInt(2, Integer.parseInt(quantity.getText()));
 							SimpleDateFormat ft = new SimpleDateFormat(
 									"yyyy-MM-dd");
 							Date date = new Date();
-							pt2.setString(3, ft.format(date));
-							//pt2.setString(4, selectedType);
+							pt2.setString(4, ft.format(date));
+							pt2.setString(3, selectedType);
+							sprice *=  (float)Integer.parseInt(quantity.getText());
+							pt2.setFloat(5, sprice);
 							pt2.executeUpdate();
 							JOptionPane.showMessageDialog(null, "Product Sold",
 									"State", JOptionPane.INFORMATION_MESSAGE);

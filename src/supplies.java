@@ -24,7 +24,7 @@ public class supplies extends JFrame {
 	public static java.sql.ResultSet rs;
 
 	// Product List DropDown menu
-	String productslist[] = { "PRODUCTS", "Add", "Edit", "Delete" };
+	String productslist[] = { "PRODUCTS", "Add",  "Delete" };
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	JComboBox prodMenu = new JComboBox(productslist);
 
@@ -42,8 +42,8 @@ public class supplies extends JFrame {
 	JButton aboutB = new JButton("About");
 	// Table Data
 	private static String[] columnNames = { "ID", "Name", "Quantity", "Date",
-			"Type", "Price", "FPA" }; // Column Name List
-	public static Object[][] data = new Object[100][7];
+		 "Price", "FPA" }; // Column Name List
+	public static Object[][] data = new Object[100][6];
 	// Table Variables
 	// Resize table variables
 	TableColumn column1 = null;
@@ -52,7 +52,6 @@ public class supplies extends JFrame {
 	TableColumn column4 = null;
 	TableColumn column5 = null;
 	TableColumn column6 = null;
-	TableColumn column7 = null;
 	public static int counter = 0;
 	Toolkit tk = Toolkit.getDefaultToolkit();
 	Dimension screenSize = tk.getScreenSize();
@@ -70,8 +69,8 @@ public class supplies extends JFrame {
 
 		// Creating and customize window
 		final JFrame frame = new JFrame();
-		frame.setTitle("Supplies");
-		frame.setSize(700, 600);
+		frame.setTitle("Warehouse - Supplies");
+		frame.setSize(700, 300);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLayout(null);
@@ -82,7 +81,7 @@ public class supplies extends JFrame {
 		frame.add(aboutB);
 
 		// Set custom layout
-		container.setBounds(0, 30, 695, 590);
+		container.setBounds(0, 30, 695, 230);
 		prodMenu.setBounds(0, 0, 175, 30);
 		buyMenu.setBounds(175, 0, 175, 30);
 		sellMenu.setBounds(350, 0, 175, 30);
@@ -105,15 +104,15 @@ public class supplies extends JFrame {
 					Add ad = new Add();
 
 					prodMenu.setSelectedIndex(0);
-				} else if (prodMenu.getSelectedItem().toString().equals("Edit")) {
+				/*} else if (prodMenu.getSelectedItem().toString().equals("Edit")) {
 					try {
 						supplies.addData();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
 					@SuppressWarnings("unused")
-					Edit ed = new Edit();
-					prodMenu.setSelectedIndex(0);
+					//Edit ed = new Edit();
+					prodMenu.setSelectedIndex(0);*/
 				} else if (prodMenu.getSelectedItem().toString()
 						.equals("Delete")) { // Delete an existing item
 					try {
@@ -165,8 +164,6 @@ public class supplies extends JFrame {
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
-					@SuppressWarnings("unused")
-					sellLog s = new sellLog();
 					buyMenu.setSelectedIndex(0);
 				} else {
 
@@ -202,6 +199,15 @@ public class supplies extends JFrame {
 				}
 			}
 		});//Sell Menu
+		//about 
+		aboutB.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("unused")
+				about ab = new about();
+			}
+		});//about
 	}
 
 	public void prodsResize() {
@@ -209,15 +215,13 @@ public class supplies extends JFrame {
 		column1 = table.getColumnModel().getColumn(0);
 		column1.setPreferredWidth(10);
 		column2 = table.getColumnModel().getColumn(1);
-		column2.setPreferredWidth(300);
+		column2.setPreferredWidth(250);
 		column3 = table.getColumnModel().getColumn(2);
 		column3.setPreferredWidth(40);
 		column5 = table.getColumnModel().getColumn(4);
 		column5.setPreferredWidth(30);
 		column6 = table.getColumnModel().getColumn(5);
 		column6.setPreferredWidth(30);
-		column7 = table.getColumnModel().getColumn(6);
-		column7.setPreferredWidth(30);
 	}
 
 	/*
@@ -263,7 +267,6 @@ public class supplies extends JFrame {
 			data[i][3] = rs.getString(4);
 			data[i][4] = rs.getString(5);
 			data[i][5] = rs.getString(6);
-			data[i][6] = rs.getString(7);
 			i++;
 			counter++;
 		}// while

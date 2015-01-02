@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -48,23 +49,24 @@ public class Delete extends JFrame {
 					pt.setString(1,product);
 					pt.executeUpdate();
 					JOptionPane.showMessageDialog(null,product + " deleted.","Deleted",JOptionPane.INFORMATION_MESSAGE);
-					//Bad Method for deleting table row 
-					for(int i =0;i<supplies.counter;i++){
+					//Empty array
+					for(int i =0;i<supplies.counter-1;i++){
 						if(supplies.data[i][1].toString().equals(product)){
-							for(int j=i;j<supplies.counter-1;j++){
-								for(int t=0;t<7;t++){
-									supplies.data[j][t] = supplies.data[j+1][t+1];
+							for(int j=i;j<supplies.counter-2;j++){
+								for(int t=0;t<6;t++){
+									supplies.data[j][t] = supplies.data[j+1][t];
 								}
 							}
-							for(int t=0;t<7;t++){
+							for(int t=0;t<6;t++){
 								supplies.data[supplies.counter-1][t] = null;
 							}
 							
 						}
-					}//end
+					}
 					
 					supplies.Tablequery();
 					supplies.table.repaint();
+					
 					dlt.dispose();
 				} catch (SQLException e) {
 					e.printStackTrace();

@@ -27,8 +27,8 @@ public class BuyLog extends JFrame {
 	int screenWidth = screenSize.width;
 
 	public BuyLog() {
-		bl.setTitle("Buy Log");
-		bl.setSize(700, 600);
+		bl.setTitle("Warehouse - Buy Log");
+		bl.setSize(700, 300);
 		bl.setResizable(false);
 		bl.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		bl.add(container);

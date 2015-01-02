@@ -1,4 +1,3 @@
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 
@@ -17,10 +16,7 @@ public class Edit extends JFrame{
 	JLabel items = new JLabel("Products");
 	JButton delete = new JButton("Edit");
 	JLabel empty = new JLabel();
-	Toolkit tk = Toolkit.getDefaultToolkit();
-	Dimension screenSize = tk.getScreenSize();
-	int screenHeight = screenSize.height;
-	int screenWidth = screenSize.width;
+	
 	public Edit(){
 		ed.setSize(500, 100);
 		ed.setResizable(false);
@@ -30,7 +26,5 @@ public class Edit extends JFrame{
 		ed.add(edList);
 		ed.add(empty);
 		ed.add(delete);
-		ed.setLocation(screenWidth / 4, screenHeight / 4);
-		ed.setVisible(true);
 	}
 }

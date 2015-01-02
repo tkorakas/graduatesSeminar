@@ -8,7 +8,5 @@ public class startApp {
 		supplies.Tablequery();
 		@SuppressWarnings("unused")
 		supplies s = new supplies();
-		//@SuppressWarnings("unused")
-		//GUI g = new GUI();
 	}
 }
