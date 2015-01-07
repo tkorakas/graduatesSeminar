@@ -24,9 +24,7 @@ public class Add extends JFrame {
 	int screenWidth = screenSize.width;
 	JLabel pname = new JLabel("Product");
 	JLabel pprice = new JLabel("Price");
-	JLabel pquant = new JLabel("Quantity");
 	JTextField name = new JTextField();
-	JTextField quant = new JTextField();
 	JTextField price = new JTextField();
 	JButton add = new JButton("Add");
 	JLabel empty = new JLabel();
@@ -39,8 +37,6 @@ public class Add extends JFrame {
 		ad.setLayout(new GridLayout(3, 2));
 		ad.add(pname);
 		ad.add(name);
-		//ad.add(pquant);
-		//ad.add(quant);
 		ad.add(pprice);
 		ad.add(price);
 		ad.add(empty);
@@ -52,10 +48,8 @@ public class Add extends JFrame {
 				String selpro = name.getText(); // new product name
 				
 				try {
-					//int selquant = Integer.parseInt(quant.getText()); // quantity
 					float selprice = Float.parseFloat(price.getText()); // price
 					float fpa = (float) ((selprice * 0.23) + selprice); // fpa
-					//if (selprice > 0 && selpro != "" && selquant >= 0) {
 						PreparedStatement pt = supplies.con
 								.prepareStatement("insert into prods values(null,?,?,?,?,?)");
 						pt.setString(1, selpro);
