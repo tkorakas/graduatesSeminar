@@ -10,6 +10,6 @@ public class about extends JFrame {
 	
 	
 	public about() {
-		 JOptionPane.showMessageDialog(null, "Κορακάς Αθανάσιος ,Ευθύμης Τσιμούρτος,Χρήστος Χυτήρης ", "Created by:", JOptionPane.INFORMATION_MESSAGE);
+		 JOptionPane.showMessageDialog(null, "Κορακάς Αθανάσιος , Ευθύμης Τσιμούρτος , Χρήστος Χυτήρης ", "Created by:", JOptionPane.INFORMATION_MESSAGE);
 	}
 }

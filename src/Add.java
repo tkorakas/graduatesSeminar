@@ -69,8 +69,7 @@ public class Add extends JFrame {
 					
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, "Fill all boxes",
-							"Error", JOptionPane.INFORMATION_MESSAGE);
-					//e.printStackTrace();
+							"Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
