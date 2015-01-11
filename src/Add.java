@@ -62,7 +62,7 @@ public class Add extends JFrame {
 						pt.executeUpdate();
 						JOptionPane.showMessageDialog(null,
 								"New Product Added", "New Product",
-								JOptionPane.INFORMATION_MESSAGE);
+								JOptionPane.DEFAULT_OPTION);
 						supplies.Tablequery();
 						supplies.table.repaint();
 						ad.dispose();

@@ -83,7 +83,7 @@ public class buy extends JFrame {
 						pt.executeUpdate();
 						JOptionPane.showMessageDialog(null,
 								"Purchase was Completed", "State",
-								JOptionPane.INFORMATION_MESSAGE);
+								JOptionPane.DEFAULT_OPTION);
 						supplies.Tablequery();
 						supplies.table.repaint();
 						j.dispose();

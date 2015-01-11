@@ -125,7 +125,7 @@ public class sell extends JFrame {
 							pt2.setFloat(5, sprice);
 							pt2.executeUpdate();
 							JOptionPane.showMessageDialog(null, "Product Sold",
-									"State", JOptionPane.INFORMATION_MESSAGE);
+									"State", JOptionPane.DEFAULT_OPTION);
 							supplies.Tablequery();
 							supplies.table.repaint();
 							j.dispose();
