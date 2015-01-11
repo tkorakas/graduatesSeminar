@@ -50,9 +50,14 @@ public class Delete extends JFrame {
 					pt.executeUpdate();
 					JOptionPane.showMessageDialog(null,product + " deleted.","Deleted",JOptionPane.INFORMATION_MESSAGE);
 					//Empty array
+					for(int j=0;j<supplies.counter;j++){
+						for(int t=0;t<6;t++){
+							supplies.data[j][t] = " ";
+						}
+					}
 					for(int i =0;i<supplies.counter-1;i++){
 						if(supplies.data[i][1].toString().equals(product)){
-							for(int j=i;j<supplies.counter-2;j++){
+							for(int j=i;j<supplies.counter;j++){
 								for(int t=0;t<6;t++){
 									supplies.data[j][t] = supplies.data[j+1][t];
 								}
