@@ -72,12 +72,12 @@ public class sell extends JFrame {
 					selectedType = "t_p";
 				}
 				try {
-					//price 
+					// price
 					@SuppressWarnings("unused")
-					float sprice = 0 ;
-					//final price
-					if(selectedType.equals("a_l")){
-						//+fpa
+					float sprice = 0;
+					// final price
+					if (selectedType.equals("a_l")) {
+						// +fpa
 						PreparedStatement pt = supplies.con
 								.prepareStatement("select pfpa from prods where pname = ?");
 						pt.setString(1, selectedItem);
@@ -85,8 +85,8 @@ public class sell extends JFrame {
 						while (supplies.rs.next()) {
 							sprice = supplies.rs.getFloat(1);
 						}
-					}else{
-						//without fpa
+					} else {
+						// without fpa
 						PreparedStatement pt = supplies.con
 								.prepareStatement("select pprice from prods where pname = ?");
 						pt.setString(1, selectedItem);
@@ -94,15 +94,16 @@ public class sell extends JFrame {
 						while (supplies.rs.next()) {
 							sprice = supplies.rs.getFloat(1);
 						}
-					}//if for payment type
-					
-					if (Integer.parseInt(quantity.getText()) > 0) {
-						PreparedStatement pt = supplies.con
-								.prepareStatement("select pquant from prods where pname = ?");
-						pt.setString(1, selectedItem);
-						supplies.rs = pt.executeQuery();
-						while (supplies.rs.next()) {
-							quantIn = supplies.rs.getInt(1);
+					}// if for payment type
+					if (!quantity.getText().equals("")) {
+						if (Integer.parseInt(quantity.getText()) > 0) {
+							PreparedStatement pt = supplies.con
+									.prepareStatement("select pquant from prods where pname = ?");
+							pt.setString(1, selectedItem);
+							supplies.rs = pt.executeQuery();
+							while (supplies.rs.next()) {
+								quantIn = supplies.rs.getInt(1);
+							}
 						}
 						if (Integer.parseInt(quantity.getText()) <= quantIn) {
 							PreparedStatement pt2 = supplies.con
@@ -119,7 +120,8 @@ public class sell extends JFrame {
 							Date date = new Date();
 							pt2.setString(4, ft.format(date));
 							pt2.setString(3, selectedType);
-							sprice *=  (float)Integer.parseInt(quantity.getText());
+							sprice *= (float) Integer.parseInt(quantity
+									.getText());
 							pt2.setFloat(5, sprice);
 							pt2.executeUpdate();
 							JOptionPane.showMessageDialog(null, "Product Sold",
@@ -130,17 +132,22 @@ public class sell extends JFrame {
 						} else {
 							JOptionPane.showMessageDialog(null,
 									"Not enough Product", "Product Quantity",
-									JOptionPane.INFORMATION_MESSAGE);
+									JOptionPane.ERROR_MESSAGE);
+
 						}
-					}
+						} else {
+							JOptionPane.showMessageDialog(null,
+									"Fill Quantity", "Sell Quantity",
+									JOptionPane.ERROR_MESSAGE);
+						}
+					
 				} catch (Exception e) {
-					//JOptionPane.showMessageDialog(null, "Fill quantity",
-						//	"Empty Quantity", JOptionPane.INFORMATION_MESSAGE);
+					// JOptionPane.showMessageDialog(null, "Fill quantity",
+					// "Empty Quantity", JOptionPane.INFORMATION_MESSAGE);
 					e.printStackTrace();
 				}
 			}
 		});
 		j.setVisible(true);
 	}// Constructor
-
 }

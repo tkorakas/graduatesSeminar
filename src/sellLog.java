@@ -14,7 +14,7 @@ public class sellLog extends JFrame {
 	 * 
 	 */
 	JFrame sl = new JFrame();
-	private static String[] slcolumns = { "ID", "Name", "Quantity", "Date" ,"Type","Price"};
+	private static String[] slcolumns = { "ID", "Name", "Quantity" ,"Type", "Date","Price"};
 	private static Object[][] datasl = new Object[100][6];
 	public static JTable selllog = new JTable(datasl, slcolumns);
 	JScrollPane container = new JScrollPane(selllog);

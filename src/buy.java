@@ -61,7 +61,7 @@ public class buy extends JFrame {
 					quant = Integer.parseInt(empsalary.getText());
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, "Fill quantity",
-							"Empty Quantity", JOptionPane.INFORMATION_MESSAGE);
+							"Empty Quantity", JOptionPane.ERROR_MESSAGE);
 				}
 				if (quant > 0) {
 					try {
@@ -90,9 +90,7 @@ public class buy extends JFrame {
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
-				} else {
-					System.out.println("fill quantity");
-				}
+				} 
 			}
 		});
 	}// constructor
